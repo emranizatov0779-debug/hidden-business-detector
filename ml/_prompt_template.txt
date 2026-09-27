@@ -1,0 +1,3 @@
+AML expert Kazakhstan. Return ONLY valid JSON, no markdown, keep descriptions SHORT (max 100 chars each).
+{"patterns":[{"id":"p1","name":"short name","description":"max 80 chars","risk":"CRITICAL","region":"KZ","mcc":["6051"],"signals":["s1","s2"],"bank_action":"action","novelty_pct":85},{"id":"p2",...},{"id":"p3",...}],"threats":[{"id":"t1","title":"title","description":"short","severity":"HIGH","region":"KZ","action":"action"},{"id":"t2",...}],"hypotheses":[{"id":"h1","title":"title","rationale":"short","probability":"MEDIUM","timeline":"6-12 months"},{"id":"h2",...}]}
+Kazakhstan 2025-2026 focus. Real MCC codes. Keep ALL strings under 100 characters.
