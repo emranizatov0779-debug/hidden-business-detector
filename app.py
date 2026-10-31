@@ -2079,6 +2079,16 @@ if st.session_state.df is not None:
 # ЗАГРУЗКА ДАННЫХ
 # ═══════════════════════════════════════════════════════════════════════════════
 st.markdown('<div class="sec-h">📁 Загрузка базы данных</div>', unsafe_allow_html=True)
+
+# КНОПКА ДЕМО-ДАННЫХ
+col_demo1, col_demo2 = st.columns([1, 4])
+with col_demo1:
+    demo_clicked = st.button('⚡ Загрузить демо-данные', help='Мгновенная загрузка — 5 000 транзакций из реальной базы')
+if demo_clicked:
+    st.session_state['use_demo'] = True
+if st.session_state.get('use_demo') and not demo_clicked:
+    pass  # уже загружено
+
 mode = st.radio('Способ загрузки:', [
     '🌐 Загрузить файл через браузер',
     '💻 Указать путь к файлу на диске (для файлов > 1 ГБ)'
@@ -2086,6 +2096,16 @@ mode = st.radio('Способ загрузки:', [
 
 df_loaded = None
 should_process = False
+
+# Обработка демо-данных
+if demo_clicked or (st.session_state.get('use_demo') and 'df' not in st.session_state):
+    demo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'demo_data.csv')
+    if os.path.exists(demo_path):
+        df_loaded = pd.read_csv(demo_path)
+        should_process = True
+        st.success(f'✅ Демо-данные загружены: {len(df_loaded):,} транзакций')
+    else:
+        st.error('Демо-файл не найден на сервере')
 
 if mode == '🌐 Загрузить файл через браузер':
     up = st.file_uploader('CSV или Excel', type=['csv','xlsx','xls'],
