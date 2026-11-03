@@ -2326,7 +2326,7 @@ if st.session_state.df is not None:
             st.info("Нажми 'Обновить' для анализа паттернов.")
 
     with tab4:
-        _render_client_profile_tab(df_u, df_stats)
+        _render_client_profile_tab(dagg, df_stats)
 
     with tab5:
         sub_a, sub_b, sub_c = st.tabs(['AI-паттерны', 'Новости и угрозы', 'Telegram'])
