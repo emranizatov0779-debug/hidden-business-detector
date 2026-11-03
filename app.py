@@ -200,7 +200,8 @@ def _render_client_profile_tab(df_u, df_stats):
     from ml.client_profile import build_full_profile
     patterns = st.session_state.get('patterns') or []
     screening = st.session_state.get('screening_result')
-    profile = build_full_profile(merchant_id, df_u, patterns, screening)
+    df_raw_for_profile = st.session_state.get('df')
+    profile = build_full_profile(merchant_id, df_u, patterns, screening, df_raw=df_raw_for_profile)
 
     txn = profile.get('transaction_profile', {})
     rec = profile.get('recommendation', {})
